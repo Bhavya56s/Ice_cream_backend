@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { Variety } from './variety/entity/variety.entity';
 import { Product } from './product/entity/product.entity';
 import { ProductModule } from './product/product.model';
+import { VarietyModule } from './variety/variety.module';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { ProductModule } from './product/product.model';
     entities:[User,Variety,Product],
     synchronize:false
   }),
-AuthModule,ProductModule
+AuthModule,ProductModule,VarietyModule
 ],
   controllers: [AppController],
   providers: [AppService],

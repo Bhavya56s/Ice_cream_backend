@@ -13,24 +13,23 @@ export class ProductService {
 async create(createProductDto:CreateProductDto):Promise<{message:string}>{
 
   const {name} = createProductDto;
-  const product = this.productRepository.create({
-    name,
-  })
+  const product = this.productRepository.create({name})
 
-  await this.productRepository.save(product);
-
+  const products =await this.productRepository.save(product);
+  if(!products){
+    throw new NotFoundException(`Product not created`);
+ }
+ 
   return {
-    message:`${product.name} sucesfully created`
+    message:`${products.name} sucesfully created`
   }
-
-
 }
 
 async findall():Promise<Product[]>{
-
-
   return this.productRepository.find();
 }
+
+
 async findOne(id: number): Promise<Product> {
   const product = await this.productRepository.findOne({
     where: { id }, 
@@ -41,6 +40,7 @@ async findOne(id: number): Promise<Product> {
   return product;
 }
 
+
 async update(id: any, updateProductDto: CreateProductDto): Promise<Product> {
   const product = await this.productRepository.update(id, updateProductDto);
   if(!product){
@@ -48,6 +48,7 @@ async update(id: any, updateProductDto: CreateProductDto): Promise<Product> {
    }
   return this.findOne(id);
 }
+
 
 async remove(id: any): Promise<{message:string}> {
  const product = await this.productRepository.delete(id);

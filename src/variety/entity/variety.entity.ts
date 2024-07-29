@@ -25,7 +25,7 @@ export class Variety {
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
   
-  @ManyToOne(() => Product, product => product.varieties)
+  @ManyToOne(() => Product, product => product.varieties,{eager:true})
   @JoinColumn({ name: 'product_id' }) 
   product: Product;
 

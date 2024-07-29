@@ -10,8 +10,9 @@ import { AuthModule } from "src/auth/auth.module";
 AuthModule ],
   controllers:[ProductController],
   providers:[ProductService],
+  exports:[TypeOrmModule]
   
 })
 
-
+ 
 export class ProductModule{}
