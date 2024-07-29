@@ -1,5 +1,6 @@
 import { IsEmail, MinLength } from "class-validator";
-import { Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Purchase } from "src/purchase/entities/purchase.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 
@@ -40,5 +41,8 @@ export class User {
 
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
+  
 
+  @OneToMany(() => Purchase, purchase => purchase.user)
+  purchases: Purchase[];
 }

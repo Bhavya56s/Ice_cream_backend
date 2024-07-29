@@ -9,6 +9,7 @@ import { Variety } from './variety/entity/variety.entity';
 import { Product } from './product/entity/product.entity';
 import { ProductModule } from './product/product.model';
 import { VarietyModule } from './variety/variety.module';
+import { Purchase } from './purchase/entities/purchase.entity';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { VarietyModule } from './variety/variety.module';
     username:'root',
     password:'root',
     database:'ice_cream_app',
-    entities:[User,Variety,Product],
+    entities:[Purchase,User,Product,Variety],
     synchronize:false
   }),
 AuthModule,ProductModule,VarietyModule

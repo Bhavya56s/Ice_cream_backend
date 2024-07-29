@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Product } from "../../product/entity/product.entity";
+import { Purchase } from "src/purchase/entities/purchase.entity";
 
 @Entity({name :'Varities'})
 
@@ -28,5 +29,8 @@ export class Variety {
   @ManyToOne(() => Product, product => product.varieties,{eager:true})
   @JoinColumn({ name: 'product_id' }) 
   product: Product;
+
+  @OneToMany(() => Purchase, purchase => purchase.variety)
+  purchases: Purchase[];
 
 }
