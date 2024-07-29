@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { Variety } from './variety/entity/variety.entity';
+import { Product } from './product/entity/product.entity';
+import { ProductModule } from './product/product.model';
 
 @Module({
   imports: [
@@ -19,10 +22,10 @@ import { ConfigModule } from '@nestjs/config';
     username:'root',
     password:'root',
     database:'ice_cream_app',
-    entities:[User],
+    entities:[User,Variety,Product],
     synchronize:false
   }),
-AuthModule
+AuthModule,ProductModule
 ],
   controllers: [AppController],
   providers: [AppService],

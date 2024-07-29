@@ -5,7 +5,6 @@ import { User } from "src/users/entities/user.entity";
 import { Repository } from "typeorm";
 import { LoginDto, SignupDto } from "./dto/auth.dto";
 import * as bcrypt from 'bcryptjs';
-import { loadEnvFile } from "process";
 
 @Injectable()
 
