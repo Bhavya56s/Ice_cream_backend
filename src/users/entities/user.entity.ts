@@ -36,6 +36,9 @@ export class User {
   })
   role: Role;
 
+  @Column({ default: 0 })
+  totalAmountSpent: number;
+  
   @CreateDateColumn({type:'timestamp'})
   created_at:Date;
 

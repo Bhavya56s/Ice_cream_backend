@@ -7,9 +7,10 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { Variety } from './variety/entity/variety.entity';
 import { Product } from './product/entity/product.entity';
-import { ProductModule } from './product/product.model';
+import { ProductModule } from './product/product.modulel';
 import { VarietyModule } from './variety/variety.module';
 import { Purchase } from './purchase/entities/purchase.entity';
+import { PurchaseModule } from './purchase/purchase.module';
 
 @Module({
   imports: [
@@ -27,9 +28,10 @@ import { Purchase } from './purchase/entities/purchase.entity';
     entities:[Purchase,User,Product,Variety],
     synchronize:false
   }),
-AuthModule,ProductModule,VarietyModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule
 ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
