@@ -30,7 +30,7 @@ export class AuthService {
 
     await this.userRepository.save(user);
 
-    const token = this.jwtService.sign({id : user.id})
+    const token = this.jwtService.sign({id : user.id,role: user.role})
     return {
     message : `${role} succesfully registered`, 
     token
@@ -53,7 +53,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid Email or password')
     }
 
-    const token = this.jwtService.sign({id:user.id});
+    const token = this.jwtService.sign({id:user.id,role:user.role});
     return {
       message:`${user.role} succesfully login`,
       token,

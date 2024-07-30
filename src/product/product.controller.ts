@@ -2,8 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from "@nes
 import { ProductService } from "./product.service";
 import { CreateProductDto } from "./dto/product.dto";
 import { AuthGuard } from "@nestjs/passport";
+import { AdminGuard } from "src/auth/admin.gaurd";
 
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'),AdminGuard)
 @Controller('product')
 
 
