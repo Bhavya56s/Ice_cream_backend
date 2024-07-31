@@ -5,6 +5,7 @@ import { Purchase } from './entities/purchase.entity';
 import { User } from 'src/users/entities/user.entity';
 import { CreatePurchaseDto } from './dto/purchase.dto';
 import { Variety } from 'src/variety/entity/variety.entity';
+import { classToPlain } from 'class-transformer';
 
 @Injectable()
 export class PurchaseService {
@@ -17,7 +18,7 @@ export class PurchaseService {
     private varietyRepository: Repository<Variety>,
   ) {}
 
-  async createPurchase(createPurchaseDto: CreatePurchaseDto): Promise<Purchase> {
+  async createPurchase(createPurchaseDto: CreatePurchaseDto): Promise<any> {
     const { userId, varietyId, quantity } = createPurchaseDto;
 
     const user = await this.userRepository.findOne({ where:{id:userId}});
@@ -48,10 +49,10 @@ export class PurchaseService {
     user.totalAmountSpent += totalBill;
     await this.userRepository.save(user);
 
-    return purchase;
+    return classToPlain(purchase);
   }
 
-  async getAllPurchasesByUser(userId: number): Promise<Purchase[]> {
+  async getAllPurchasesByUser(userId: number): Promise<any> {
     const user = await this.userRepository.findOne({where:{id:userId},});
     if (!user) {
       throw new NotFoundException('User not found');
@@ -62,6 +63,6 @@ export class PurchaseService {
       relations: ['variety'],
     });
 
-    return purchases;
+    return classToPlain(purchases);
   }
 }
