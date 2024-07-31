@@ -61,7 +61,7 @@ export class VarietyService {
 
   async remove(id:any):Promise<{message:string}>{
     const variety = await this.varietyRepository.delete(id)
-    if(!variety){
+    if(variety.affected===0){
       throw new NotFoundException(`Variety with ID ${id} not found`)
     }
     return {message:`Deleted succesfully`}

@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuards } from "@nestjs/common";
 import { VarietyService } from "./variety.services";
 import { AuthGuard } from "@nestjs/passport";
-import { CreateProductDto } from "src/product/dto/product.dto";
 import { CreateVarietyDto, UpdateVarietyDto } from "./dto/variety.dto";
+import { AdminGuard } from "src/auth/admin.gaurd";
 
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'),AdminGuard)
 @Controller('/variety')
 
 export class VarietyController{

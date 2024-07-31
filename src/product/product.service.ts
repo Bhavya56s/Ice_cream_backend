@@ -53,7 +53,7 @@ async update(id: any, updateProductDto: CreateProductDto): Promise<Product> {
 async remove(id: any): Promise<{message:string}> {
  const product = await this.productRepository.delete(id);
 
- if(!product){
+ if(product.affected===0){
   throw new NotFoundException(`Product with ID ${id} not found`)
  }
 
