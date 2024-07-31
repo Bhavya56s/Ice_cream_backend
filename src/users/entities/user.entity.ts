@@ -1,6 +1,6 @@
 import { IsEmail, MinLength } from "class-validator";
 import { Purchase } from "src/purchase/entities/purchase.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 
