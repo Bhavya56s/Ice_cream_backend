@@ -3,7 +3,10 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { CreatePurchaseDto } from './dto/purchase.dto';
 import { PurchaseService } from './purchase.services';
+import {  ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiSecurity('JWT-Auth')
+@ApiTags('Purchase')
 @UseGuards(AuthGuard('jwt'))
 @Controller('purchase')
 export class PurchaseController {

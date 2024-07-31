@@ -3,7 +3,10 @@ import { VarietyService } from "./variety.services";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateVarietyDto, UpdateVarietyDto } from "./dto/variety.dto";
 import { AdminGuard } from "src/auth/admin.gaurd";
+import { ApiSecurity, ApiTags } from "@nestjs/swagger";
 
+@ApiSecurity('JWT-Auth')
+@ApiTags('Variety')
 @UseGuards(AuthGuard('jwt'),AdminGuard)
 @Controller('/variety')
 

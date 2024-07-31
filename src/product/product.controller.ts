@@ -3,7 +3,10 @@ import { ProductService } from "./product.service";
 import { CreateProductDto } from "./dto/product.dto";
 import { AuthGuard } from "@nestjs/passport";
 import { AdminGuard } from "src/auth/admin.gaurd";
+import { ApiSecurity, ApiTags } from "@nestjs/swagger";
 
+@ApiSecurity('JWT-Auth')
+@ApiTags('Product')
 @UseGuards(AuthGuard('jwt'),AdminGuard)
 @Controller('product')
 
