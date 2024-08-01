@@ -37,17 +37,19 @@ export class PurchaseService {
 
     const totalBill = variety.price * quantity;
 
-    const purchase = this.purchaseRepository.create({
-      variety,user,quantity,totalBill
-    });
-
-    await this.purchaseRepository.save(purchase);
-
     variety.availabale -= quantity;
     await this.varietyRepository.save(variety);
 
     user.totalAmountSpent += totalBill;
     await this.userRepository.save(user);
+
+    
+    const purchase = this.purchaseRepository.create({
+      variety,user,quantity,totalBill
+    });
+
+
+    await this.purchaseRepository.save(purchase);
 
     return classToPlain(purchase);
   }

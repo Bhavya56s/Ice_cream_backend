@@ -1,19 +1,12 @@
-import { Product } from "src/product/entity/product.entity";
 import { User } from "src/users/entities/user.entity";
 import { Variety } from "src/variety/entity/variety.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 
-export class Purchase{
+export class Favourite{
   @PrimaryGeneratedColumn()
   id:number
-
-  @Column()
-  totalBill:number;
-  
-  @Column()
-  quantity:number;
 
   @CreateDateColumn({type:'timestamp'})
   created_at:Date;

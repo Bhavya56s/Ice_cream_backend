@@ -4,15 +4,17 @@ import { AuthGuard } from "@nestjs/passport";
 import { CreateVarietyDto, UpdateVarietyDto } from "./dto/variety.dto";
 import { AdminGuard } from "src/auth/admin.gaurd";
 import { ApiSecurity, ApiTags } from "@nestjs/swagger";
+import { Admin } from "typeorm";
 
 @ApiSecurity('JWT-Auth')
 @ApiTags('Variety')
-@UseGuards(AuthGuard('jwt'),AdminGuard)
+@UseGuards(AuthGuard('jwt'))
 @Controller('/variety')
 
 export class VarietyController{
   constructor(private varietyService : VarietyService) {}
 
+  @UseGuards(AdminGuard)
   @Post('/create')
   
   signUp(@Body()  createVarietyDto: CreateVarietyDto){
@@ -29,12 +31,14 @@ export class VarietyController{
     return this.varietyService.findOne(id)
   }
 
+  @UseGuards(AdminGuard)
   @Put('/:id')
  
   update(@Param('id',ParseIntPipe) id: number, @Body() updateVarietyDto: UpdateVarietyDto) {
     return this.varietyService.update(id, updateVarietyDto);
   }
 
+  @UseGuards(AdminGuard)
   @Delete('/:id')
   remove(@Param('id') id:number){
     return this.varietyService.remove(id)

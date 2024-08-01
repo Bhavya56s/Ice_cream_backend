@@ -7,13 +7,14 @@ import { ApiSecurity, ApiTags } from "@nestjs/swagger";
 
 @ApiSecurity('JWT-Auth')
 @ApiTags('Product')
-@UseGuards(AuthGuard('jwt'),AdminGuard)
+@UseGuards(AuthGuard('jwt'))
 @Controller('product')
 
 
 export class  ProductController{
   constructor(private productService : ProductService) {}
-
+  
+  @UseGuards(AdminGuard)
   @Post('/create')
   
   signUp(@Body()  createProductDto: CreateProductDto){
@@ -32,12 +33,14 @@ export class  ProductController{
     return this.productService.findOne(id);
   }
 
+  @UseGuards(AdminGuard)
   @Put('/:id')
  
   update(@Param('id') id: number, @Body() updateProductDto: CreateProductDto) {
     return this.productService.update(id, updateProductDto);
   }
-
+   
+  @UseGuards(AdminGuard)
   @Delete('/:id')
 
   remove(@Param('id') id: number) {

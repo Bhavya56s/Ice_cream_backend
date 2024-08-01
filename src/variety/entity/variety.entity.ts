@@ -1,8 +1,9 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Product } from "../../product/entity/product.entity";
 import { Purchase } from "src/purchase/entities/purchase.entity";
+import { Favourite } from "src/favourites/entity/favourite.entity";
 
-@Entity({name :'Varities'})
+@Entity()
 
 export class Variety {
   @PrimaryGeneratedColumn()
@@ -32,5 +33,8 @@ export class Variety {
 
   @OneToMany(() => Purchase, purchase => purchase.variety)
   purchases: Purchase[];
+
+  @OneToMany(() => Favourite, favourite => favourite.variety)
+  favourites: Favourite[];
 
 }

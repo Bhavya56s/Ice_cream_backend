@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
 import { IsEmail, MinLength } from "class-validator";
+import { Favourite } from "src/favourites/entity/favourite.entity";
 import { Purchase } from "src/purchase/entities/purchase.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -11,7 +12,7 @@ export enum Role {
 }
 
 
-@Entity({name:'Users'})
+@Entity()
 
 export class User {
   @PrimaryGeneratedColumn()
@@ -50,4 +51,7 @@ export class User {
 
   @OneToMany(() => Purchase, purchase => purchase.user)
   purchases: Purchase[];
+
+  @OneToMany(() => Favourite, favourite => favourite.user)
+  favourites: Favourite[];
 }
