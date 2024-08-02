@@ -4,10 +4,11 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreatePurchaseDto } from './dto/purchase.dto';
 import { PurchaseService } from './purchase.services';
 import {  ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { UserGuard } from 'src/auth/user.gaurd';
 
 @ApiSecurity('JWT-Auth')
 @ApiTags('Purchase')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'),UserGuard)
 @Controller('purchase')
 export class PurchaseController {
   constructor(private purchaseService: PurchaseService) {}

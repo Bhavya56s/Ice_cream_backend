@@ -4,7 +4,7 @@ import { AuthModule } from "src/auth/auth.module";
 import { Variety } from "./entity/variety.entity";
 import { VarietyController } from "./variety.controller";
 import { VarietyService } from "./variety.services";
-import { ProductModule } from "src/product/product.modulel";
+import { ProductModule } from "src/product/product.module";
 
 @Module({
   imports:[ TypeOrmModule.forFeature([Variety]),
