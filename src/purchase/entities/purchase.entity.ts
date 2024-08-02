@@ -21,12 +21,12 @@ export class Purchase{
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
 
-  @ManyToOne(() => User, user => user.purchases,{eager:true})
+  @ManyToOne(() => User, user => user.purchases,{onDelete:'CASCADE'})
   @JoinColumn({ name: 'userId' }) 
   user: User;
 
   
-  @ManyToOne(() => Variety, variety => variety.purchases,{eager:true})
+  @ManyToOne(() => Variety, variety => variety.purchases,{onDelete:'CASCADE'})
   @JoinColumn({ name: 'varietyId' }) 
   variety: Variety;
 }

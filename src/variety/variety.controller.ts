@@ -4,7 +4,7 @@ import { AuthGuard } from "@nestjs/passport";
 import { CreateVarietyDto, UpdateVarietyDto } from "./dto/variety.dto";
 import { AdminGuard } from "src/auth/admin.gaurd";
 import { ApiSecurity, ApiTags } from "@nestjs/swagger";
-import { Admin } from "typeorm";
+
 
 @ApiSecurity('JWT-Auth')
 @ApiTags('Variety')

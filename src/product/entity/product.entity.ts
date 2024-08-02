@@ -16,6 +16,6 @@ export class Product{
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
 
-  @OneToMany(() => Variety, variety => variety.product)
+  @OneToMany(() => Variety, variety => variety.product,{onDelete:'CASCADE',cascade:true})
   varieties: Variety[];
 }

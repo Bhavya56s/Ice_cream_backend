@@ -43,7 +43,7 @@ export class PurchaseService {
     user.totalAmountSpent += totalBill;
     await this.userRepository.save(user);
 
-    
+
     const purchase = this.purchaseRepository.create({
       variety,user,quantity,totalBill
     });

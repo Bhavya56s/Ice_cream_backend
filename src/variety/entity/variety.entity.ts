@@ -27,14 +27,14 @@ export class Variety {
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
   
-  @ManyToOne(() => Product, product => product.varieties,{eager:true})
+  @ManyToOne(() => Product, product => product.varieties,{onDelete:"CASCADE"})
   @JoinColumn({ name: 'product_id' }) 
   product: Product;
 
-  @OneToMany(() => Purchase, purchase => purchase.variety)
+  @OneToMany(() => Purchase, purchase => purchase.variety,{onDelete:'CASCADE',cascade:true})
   purchases: Purchase[];
 
-  @OneToMany(() => Favourite, favourite => favourite.variety)
+  @OneToMany(() => Favourite, favourite => favourite.variety,{onDelete:'CASCADE',cascade:true})
   favourites: Favourite[];
 
 }

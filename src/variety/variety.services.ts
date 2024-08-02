@@ -36,8 +36,7 @@ export class VarietyService {
   }
 
   async findAll():Promise<Variety[]>{
-    return this.varietyRepository.find( //{ relations: ['product'] }
-      );
+    return this.varietyRepository.find();
   }
 
   async findOne(id: number): Promise<Variety> {

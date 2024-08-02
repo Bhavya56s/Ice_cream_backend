@@ -11,7 +11,6 @@ export enum Role {
   USER = 'user',
 }
 
-
 @Entity()
 
 export class User {
@@ -30,8 +29,6 @@ export class User {
   @MinLength(6)
   password:string;
 
- 
-
   @Column({
     type: 'enum',
     enum: Role,
@@ -49,9 +46,11 @@ export class User {
   updated_at:Date;
   
 
-  @OneToMany(() => Purchase, purchase => purchase.user)
+  @OneToMany(() => Purchase, purchase => purchase.user,{onDelete:'CASCADE',cascade:true})
   purchases: Purchase[];
 
-  @OneToMany(() => Favourite, favourite => favourite.user)
+  @OneToMany(() => Favourite, favourite => favourite.user,{onDelete:'CASCADE',cascade:true})
   favourites: Favourite[];
+
+ 
 }
