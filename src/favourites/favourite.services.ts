@@ -1,26 +1,25 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/users/entities/user.entity";
 import { Variety } from "src/variety/entity/variety.entity";
 import { Repository } from "typeorm";
 import { Favourite } from "./entity/favourite.entity";
-import { CreatePurchaseDto } from "src/purchase/dto/purchase.dto";
 import { CreateFavouriteDto } from "./dto/favourite.dto";
 import { classToPlain } from "class-transformer";
+import { Profiles } from "src/profile/entities/profile.entity";
 
 @Injectable()
 export class FavouriteService{
   constructor( @InjectRepository(Favourite)
   private favouriteRepository: Repository<Favourite>,
-  @InjectRepository(User)
-  private userRepository: Repository<User>,
+  @InjectRepository(Profiles)
+  private profileRepository: Repository<Profiles>,
   @InjectRepository(Variety)
   private varietyRepository: Repository<Variety>){}
 
   async createFavourite(createFavouriteDto:CreateFavouriteDto):Promise<{message:string}>{
     const { userId, varietyId } = createFavouriteDto;
 
-    const user = await this.userRepository.findOne({ where:{id:userId}});
+    const user = await this.profileRepository.findOne({ where:{id:userId}});
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -38,7 +37,7 @@ export class FavouriteService{
   }
 
   async getallfavouritebyUser(userId: number): Promise<any> {
-    const user = await this.userRepository.findOne({where:{id:userId},});
+    const user = await this.profileRepository.findOne({where:{id:userId},});
     if (!user) {
       throw new NotFoundException('User not found');
     }

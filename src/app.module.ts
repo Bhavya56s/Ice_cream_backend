@@ -8,7 +8,7 @@ import { ProductModule } from './product/product.module';
 import { VarietyModule } from './variety/variety.module';
 import { PurchaseModule } from './purchase/purchase.module';
 import { FavouriteModule } from './favourites/favourite.module';
-import { UserModule } from './users/user.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { UserModule } from './users/user.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,UserModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,ProfileModule
 ],
   controllers: [AppController],
   providers: [AppService],

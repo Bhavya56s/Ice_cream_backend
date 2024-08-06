@@ -1,7 +1,7 @@
 import { Controller, Delete, Get, Param, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { ApiSecurity, ApiTags } from "@nestjs/swagger";
-import { UserService } from "./user.services";
+import { ProfileService } from "./profile.services";
 import { AdminGuard } from "src/auth/admin.gaurd";
 
 
@@ -10,8 +10,8 @@ import { AdminGuard } from "src/auth/admin.gaurd";
 @UseGuards(AuthGuard('jwt'))
 @Controller('users')
 
-export class UserController{
-  constructor (private userService:UserService){}
+export class ProfileController{
+  constructor (private userService:ProfileService){}
 
   @UseGuards(AdminGuard)
   @Get('/all')

@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/users/entities/user.entity';
+import { Profiles } from 'src/profile/entities/profile.entity';
 
 @Injectable()
 export class AdminGuard extends AuthGuard('jwt') implements CanActivate {
@@ -12,9 +12,9 @@ export class AdminGuard extends AuthGuard('jwt') implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest();
-    const user = request.user as User;
+    const profile = request.profile as Profiles
 
-    if (user.role !== 'admin') {
+    if (profile.role !== 'admin') {
       throw new ForbiddenException('Access denied');
     }
 

@@ -41,12 +41,19 @@ async findOne(id: number): Promise<Product> {
 }
 
 
-async update(id: any, updateProductDto: CreateProductDto): Promise<Product> {
+async update(id: any, updateProductDto: CreateProductDto): Promise<{message:string}> {
+
+  const products = await this.productRepository.findOne({
+    where: { id }, 
+  });
+  if (!products) {
+    throw new NotFoundException(`Product with ID ${id} not found`);
+  }
   const product = await this.productRepository.update(id, updateProductDto);
   if(!product){
     throw new NotFoundException(`Product with ID ${id} not found`)
    }
-  return this.findOne(id);
+  return {message:`Details Updated sucessfully`}
 }
 
 

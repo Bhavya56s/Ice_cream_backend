@@ -17,7 +17,7 @@ export class  ProductController{
   @UseGuards(AdminGuard)
   @Post('/create')
   
-  signUp(@Body()  createProductDto: CreateProductDto){
+  create(@Body()  createProductDto: CreateProductDto){
     return this.productService.create(createProductDto);
   }
 

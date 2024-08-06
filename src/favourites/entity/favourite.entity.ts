@@ -1,4 +1,4 @@
-import { User } from "src/users/entities/user.entity";
+import { Profiles } from "src/profile/entities/profile.entity";
 import { Variety } from "src/variety/entity/variety.entity";
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -14,9 +14,9 @@ export class Favourite{
   @UpdateDateColumn({type:'timestamp'})
   updated_at:Date;
 
-  @ManyToOne(() => User, user => user.purchases,{onDelete:'CASCADE'})
+  @ManyToOne(() => Profiles, user => user.purchases,{onDelete:'CASCADE'})
   @JoinColumn({ name: 'userId' }) 
-  user: User;
+  user: Profiles;
 
   
   @ManyToOne(() => Variety, variety => variety.purchases,{onDelete:'CASCADE'})

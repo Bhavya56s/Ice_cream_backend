@@ -9,11 +9,12 @@ import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Up
 export enum Role {
   ADMIN = 'admin',
   USER = 'user',
+  SUPERADMIN= 'super admin'
 }
 
 @Entity()
 
-export class User {
+export class Profiles {
   @PrimaryGeneratedColumn()
   id:number;
 

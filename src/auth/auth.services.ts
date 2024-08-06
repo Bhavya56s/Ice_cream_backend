@@ -1,17 +1,17 @@
 import {  Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/users/entities/user.entity";
 import { Repository } from "typeorm";
 import { LoginDto, SignupDto } from "./dto/auth.dto";
 import * as bcrypt from 'bcryptjs';
+import { Profiles } from "src/profile/entities/profile.entity";
 
 @Injectable()
 
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private userRepository:Repository<User>,
+    @InjectRepository(Profiles)
+    private profileRepository:Repository<Profiles>,
     private jwtService : JwtService,
   ){}
 
@@ -21,16 +21,16 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(password,10);
 
-    const user = this.userRepository.create({
+    const profile = this.profileRepository.create({
       name,
       email,
       password: hashedPassword,
       role,
     })
 
-    await this.userRepository.save(user);
+    await this.profileRepository.save(profile);
 
-    const token = this.jwtService.sign({id : user.id,role: user.role})
+    const token = this.jwtService.sign({id : profile.id,role: profile.role})
     return {
     message : `${role} succesfully registered`, 
     token
@@ -41,21 +41,21 @@ export class AuthService {
 
     const {email,password} = loginDto;
      
-    const user = await this.userRepository.findOne({where:{email}})
+    const profile = await this.profileRepository.findOne({where:{email}})
 
-    if(!user){
+    if(!profile){
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const isPasswordMatched = await bcrypt.compare(password,user.password);
+    const isPasswordMatched = await bcrypt.compare(password,profile.password);
 
     if(!isPasswordMatched){
       throw new UnauthorizedException('Invalid Email or password')
     }
 
-    const token = this.jwtService.sign({id:user.id,role:user.role});
+    const token = this.jwtService.sign({id:profile.id,role:profile.role});
     return {
-      message:`${user.role} succesfully login`,
+      message:`${profile.role} succesfully login`,
       token,
     }
   }
