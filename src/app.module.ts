@@ -9,6 +9,7 @@ import { VarietyModule } from './variety/variety.module';
 import { PurchaseModule } from './purchase/purchase.module';
 import { FavouriteModule } from './favourites/favourite.module';
 import { ProfileModule } from './profile/profile.module';
+import { SuperAdminModule } from './superAdmin/superAdmin.module';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { ProfileModule } from './profile/profile.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,ProfileModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,ProfileModule,SuperAdminModule
 ],
   controllers: [AppController],
   providers: [AppService],

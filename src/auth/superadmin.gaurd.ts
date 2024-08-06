@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Profiles } from 'src/profile/entities/profile.entity';
 
 @Injectable()
-export class AdminGuard extends AuthGuard('jwt') implements CanActivate {
+export class SuperAdminGuard extends AuthGuard('jwt') implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const canActivate = await super.canActivate(context);
     
@@ -15,7 +15,7 @@ export class AdminGuard extends AuthGuard('jwt') implements CanActivate {
     const profile = request.user as Profiles;
   
   
-    if (!profile || profile.role !== 'admin') {
+    if (!profile || profile.role !== 'super admin') {
       throw new ForbiddenException('Access denied');
     }
   

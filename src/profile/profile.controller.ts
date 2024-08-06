@@ -6,27 +6,27 @@ import { AdminGuard } from "src/auth/admin.gaurd";
 
 
 @ApiSecurity('JWT-Auth')
-@ApiTags('Users')
+@ApiTags('Profiles')
 @UseGuards(AuthGuard('jwt'))
-@Controller('users')
+@Controller('profile')
 
 export class ProfileController{
-  constructor (private userService:ProfileService){}
+  constructor (private profileService:ProfileService){}
 
   @UseGuards(AdminGuard)
   @Get('/all')
   findAll(){
-    return this.userService.findall()
+    return this.profileService.findall()
   }
 
   @UseGuards(AdminGuard) 
   @Get('/:id')
   findById(@Param('id') id:number){
-    return this.userService.findById(id)
+    return this.profileService.findById(id)
   }
   @UseGuards(AdminGuard)
   @Delete('/:id')
   remove(@Param('id') id:number){
-    return this.userService.remove(id)
+    return this.profileService.remove(id)
   }
 }

@@ -1,4 +1,4 @@
-import {  Injectable, UnauthorizedException } from "@nestjs/common";
+import {  Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -20,6 +20,10 @@ export class AuthService {
     const {name,email,password,role} = signupDto;
 
     const hashedPassword = await bcrypt.hash(password,10);
+
+    if(role== 'admin'){
+      throw new NotFoundException("Admin cannot created")
+    }
 
     const profile = this.profileRepository.create({
       name,
