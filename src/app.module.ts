@@ -8,8 +8,8 @@ import { ProductModule } from './product/product.module';
 import { VarietyModule } from './variety/variety.module';
 import { PurchaseModule } from './purchase/purchase.module';
 import { FavouriteModule } from './favourites/favourite.module';
-import { ProfileModule } from './profile/profile.module';
 import { SuperAdminModule } from './superAdmin/superAdmin.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -28,7 +28,7 @@ import { SuperAdminModule } from './superAdmin/superAdmin.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,ProfileModule,SuperAdminModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule
 ],
   controllers: [AppController],
   providers: [AppService],
