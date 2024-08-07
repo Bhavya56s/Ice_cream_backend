@@ -3,30 +3,30 @@ import { AuthGuard } from "@nestjs/passport";
 import { ApiSecurity, ApiTags } from "@nestjs/swagger";
 import { AdminGuard } from "src/auth/admin.gaurd";
 import { AdminService } from "./admin.services";
-import { UpdateAdminDto } from "src/superAdmin/dto/superAdmin.dto";
 import { UpdateUserDto } from "./dto/admin.dto";
+import { SuperAdminGuard } from "src/auth/superadmin.gaurd";
 
-
+@UseGuards(AdminGuard,SuperAdminGuard)
 @ApiSecurity('JWT-Auth')
-@ApiTags('Admin Functionalities')
+@ApiTags('Admin Panel')
 @UseGuards(AuthGuard('jwt'))
 @Controller('/user')
 
 export class AdminController{
   constructor (private adminService:AdminService){}
 
-  @UseGuards(AdminGuard)
+ 
   @Get('/all')
   findAll(){
     return this.adminService.findall()
   }
 
-  @UseGuards(AdminGuard) 
+  
   @Get('/:id')
   findById(@Param('id') id:number){
     return this.adminService.findById(id)
   }
-  @UseGuards(AdminGuard)
+  
   @Delete('/:id')
   remove(@Param('id') id:number){
     return this.adminService.remove(id)

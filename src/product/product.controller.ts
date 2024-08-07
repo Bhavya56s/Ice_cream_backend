@@ -4,6 +4,7 @@ import { CreateProductDto } from "./dto/product.dto";
 import { AuthGuard } from "@nestjs/passport";
 import { AdminGuard } from "src/auth/admin.gaurd";
 import { ApiSecurity, ApiTags } from "@nestjs/swagger";
+import { SuperAdminGuard } from "src/auth/superadmin.gaurd";
 
 @ApiSecurity('JWT-Auth')
 @ApiTags('Product')
@@ -14,7 +15,8 @@ import { ApiSecurity, ApiTags } from "@nestjs/swagger";
 export class  ProductController{
   constructor(private productService : ProductService) {}
   
-  @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard,SuperAdminGuard)
+
   @Post('/create')
   
   create(@Body()  createProductDto: CreateProductDto){
@@ -33,14 +35,16 @@ export class  ProductController{
     return this.productService.findOne(id);
   }
 
-  @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard,SuperAdminGuard)
+
   @Put('/:id')
  
   update(@Param('id') id: number, @Body() updateProductDto: CreateProductDto) {
     return this.productService.update(id, updateProductDto);
   }
    
-  @UseGuards(AdminGuard)
+  @UseGuards(AdminGuard,SuperAdminGuard)
+
   @Delete('/:id')
 
   remove(@Param('id') id: number) {

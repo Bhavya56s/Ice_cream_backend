@@ -10,6 +10,7 @@ import { AdminController } from "./admin.controller";
 AuthModule ],
   controllers:[AdminController],
   providers:[AdminService],
+  exports:[TypeOrmModule]
   
 })
 

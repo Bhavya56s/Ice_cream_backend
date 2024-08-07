@@ -10,6 +10,7 @@ import { PurchaseModule } from './purchase/purchase.module';
 import { FavouriteModule } from './favourites/favourite.module';
 import { SuperAdminModule } from './superAdmin/superAdmin.module';
 import { AdminModule } from './admin/admin.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { AdminModule } from './admin/admin.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule,ProfileModule
 ],
   controllers: [AppController],
   providers: [AppService],

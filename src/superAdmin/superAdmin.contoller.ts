@@ -7,7 +7,7 @@ import { SuperAdminGuard } from "src/auth/superadmin.gaurd";
 
 @ApiSecurity('JWT-Auth')
 @UseGuards(AuthGuard('jwt'),SuperAdminGuard)
-@ApiTags('SuperAdmin Functionalities')
+@ApiTags('SuperAdmin Panel')
 @Controller('/admin')
 
 
