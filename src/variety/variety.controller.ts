@@ -37,7 +37,7 @@ export class VarietyController{
 
   @Put('/:id')
  
-  update(@Param('id',ParseIntPipe) id: number, @Body() updateVarietyDto: UpdateVarietyDto) {
+  update(@Param('id') id: number, @Body() updateVarietyDto: UpdateVarietyDto) {
     return this.varietyService.update(id, updateVarietyDto);
   }
 

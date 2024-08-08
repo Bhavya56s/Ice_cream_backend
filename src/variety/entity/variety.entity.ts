@@ -2,39 +2,41 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, Pri
 import { Product } from "../../product/entity/product.entity";
 import { Purchase } from "src/purchase/entities/purchase.entity";
 import { Favourite } from "src/favourites/entity/favourite.entity";
+import { Cart } from "src/cart/entity/cart.entity";
 
 @Entity()
-
 export class Variety {
   @PrimaryGeneratedColumn()
-  id:number;
+  id: number;
 
   @Column()
-  name:string;
+  name: string;
 
   @Column()
-  description:string;
+  description: string;
+
+  @Column('decimal', { precision: 10, scale: 2 })
+  price: number;
 
   @Column()
-  price:number;
+  availabale: number; 
 
-  @Column()
-  availabale:number;
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
 
-  @CreateDateColumn({type:'timestamp'})
-  created_at:Date;
+  @UpdateDateColumn({ type: 'timestamp' })
+  updated_at: Date;
 
-  @UpdateDateColumn({type:'timestamp'})
-  updated_at:Date;
-  
-  @ManyToOne(() => Product, product => product.varieties,{onDelete:"CASCADE"})
-  @JoinColumn({ name: 'product_id' }) 
+  @ManyToOne(() => Product, product => product.varieties, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'product_id' })
   product: Product;
 
-  @OneToMany(() => Purchase, purchase => purchase.variety,{onDelete:'CASCADE',cascade:true})
+  @OneToMany(() => Purchase, purchase => purchase.variety, { onDelete: 'CASCADE', cascade: true })
   purchases: Purchase[];
 
-  @OneToMany(() => Favourite, favourite => favourite.variety,{onDelete:'CASCADE',cascade:true})
+  @OneToMany(() => Favourite, favourite => favourite.variety, { onDelete: 'CASCADE', cascade: true })
   favourites: Favourite[];
 
+  @OneToMany(() => Cart, cart => cart.variety, { onDelete: 'CASCADE', cascade: true })
+  carts: Cart[];
 }

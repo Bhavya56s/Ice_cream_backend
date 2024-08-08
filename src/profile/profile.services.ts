@@ -14,7 +14,7 @@ private profileRepository:Repository<Profiles>){}
 
 
   async getProfile(id: number): Promise<any> {
-    console.log(id);
+    
     
  
     const profile = await this.profileRepository.findOne({where:{id}});

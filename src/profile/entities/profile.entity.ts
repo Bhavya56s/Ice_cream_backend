@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
 import { IsEmail, MinLength } from "class-validator";
+import { Cart } from "src/cart/entity/cart.entity";
 import { Favourite } from "src/favourites/entity/favourite.entity";
 import { Purchase } from "src/purchase/entities/purchase.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -53,5 +54,7 @@ export class Profiles {
   @OneToMany(() => Favourite, favourite => favourite.user,{onDelete:'CASCADE',cascade:true})
   favourites: Favourite[];
 
+  @OneToMany(() => Cart, cart => cart.user,{onDelete:'CASCADE',cascade:true})
+  carts: Cart[];
  
 }

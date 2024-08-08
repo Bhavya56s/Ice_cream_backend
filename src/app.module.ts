@@ -11,6 +11,7 @@ import { FavouriteModule } from './favourites/favourite.module';
 import { SuperAdminModule } from './superAdmin/superAdmin.module';
 import { AdminModule } from './admin/admin.module';
 import { ProfileModule } from './profile/profile.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { ProfileModule } from './profile/profile.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule,ProfileModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule,ProfileModule,CartModule
 ],
   controllers: [AppController],
   providers: [AppService],

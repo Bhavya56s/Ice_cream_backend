@@ -2,16 +2,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsNotEmpty } from "class-validator";
 
 export class CreateFavouriteDto{
-  @ApiProperty({
-    description:"ID of user",
-   })
+  @ApiProperty()
   @IsInt()
   @IsNotEmpty()
   userId: number;
 
-  @ApiProperty({
-    description:"ID of variety u want to purchase",
-   })
+  @ApiProperty()
   @IsInt()
   @IsNotEmpty()
   varietyId: number;
