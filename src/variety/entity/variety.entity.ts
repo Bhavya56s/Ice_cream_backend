@@ -3,6 +3,7 @@ import { Product } from "../../product/entity/product.entity";
 import { Purchase } from "src/purchase/entities/purchase.entity";
 import { Favourite } from "src/favourites/entity/favourite.entity";
 import { Cart } from "src/cart/entity/cart.entity";
+import { Review } from "src/review/entity/review.entity";
 
 @Entity()
 export class Variety {
@@ -39,4 +40,7 @@ export class Variety {
 
   @OneToMany(() => Cart, cart => cart.variety, { onDelete: 'CASCADE', cascade: true })
   carts: Cart[];
+
+  @OneToMany(() => Review, review => review.variety, { onDelete: 'CASCADE', cascade: true })
+  reviews: Review[];
 }
