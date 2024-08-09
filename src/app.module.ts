@@ -12,6 +12,7 @@ import { SuperAdminModule } from './superAdmin/superAdmin.module';
 import { AdminModule } from './admin/admin.module';
 import { ProfileModule } from './profile/profile.module';
 import { CartModule } from './cart/cart.module';
+import { ReviewModule } from './review/review.module';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { CartModule } from './cart/cart.module';
     synchronize:true
     
   }),
-AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule,ProfileModule,CartModule
+AuthModule,ProductModule,VarietyModule,PurchaseModule,FavouriteModule,AdminModule,SuperAdminModule,ProfileModule,CartModule,ReviewModule
 ],
   controllers: [AppController],
   providers: [AppService],
